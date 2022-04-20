@@ -1,8 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-//#include <stb_image.h>
 
-//#include <learnopengl/shader_s.h>
+#include "Shader.h"
 
 #include <iostream>
 
@@ -29,6 +28,7 @@ int main()
 	}
 
 	// Shader //////////////////////////////////////////////
+	Shader shader("assets/shaders/VertexShaderDefault.glsl", "assets/shaders/FragShaderDefault.glsl");
 
 	while (true)
 	{
