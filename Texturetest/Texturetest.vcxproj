@@ -149,6 +149,17 @@
   <ItemGroup>
     <ClInclude Include="Shader.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\glad\glad.vcxproj">
+      <Project>{a6beecda-0df0-4b86-bac1-31b3e8f5454d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\glfw\build\src\glfw.vcxproj">
+      <Project>{c34b54cf-873d-3933-a066-c02fa7d0bb01}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\stbi\stbi.vcxproj">
+      <Project>{d6ac8bf5-ee4f-4acb-b9f3-237536e93b2b}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

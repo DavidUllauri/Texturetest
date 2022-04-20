@@ -1,6 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <stb_image.h>
+//#include <stb_image.h>
 
 //#include <learnopengl/shader_s.h>
 
@@ -30,6 +30,12 @@ int main()
 
 	// Shader //////////////////////////////////////////////
 
+	while (true)
+	{
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
 
+	glfwTerminate();
 	return 0;
 }

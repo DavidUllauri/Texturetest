@@ -31,5 +31,6 @@
 *.out
 *.app
 
-
-.vs
+*.jfm
+.vs/
+x64/
