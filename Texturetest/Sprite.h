@@ -4,7 +4,7 @@
 class Sprite
 {
 public:
-	Sprite(const std::string& file);
+	Sprite(const std::string& file, bool png);
 	int GetWidth() const;
 	int GetHeight() const;
 	unsigned int GetVAO() const;
