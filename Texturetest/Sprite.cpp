@@ -5,14 +5,6 @@
 
 Sprite::Sprite(const std::string& file)
 {
-    // load image, create texture and generate mipmaps
-    int nChannels;
-    stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
-    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-    unsigned char* data = stbi_load(file.c_str(), &mWidth, &mHeight, &nChannels, 0);    // file: "../TDE/assets/Star.png"
-    if (!data)
-        std::cout << "ERROR: texture didn't load" << std::endl;
-
     float vertices[] = {
         // positions                            // colors
         0.0f,           0.0f,           0.0f,   0.0f, // bottom left
@@ -55,11 +47,21 @@ Sprite::Sprite(const std::string& file)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mWidth, mHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, mWidth, mHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
+    // load image, create texture and generate mipmaps
+    int nChannels;
+    stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
+    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
+    unsigned char* data = stbi_load(file.c_str(), &mWidth, &mHeight, &nChannels, 0);    // file: "../TDE/assets/Star.png"
+    if (data) 
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mWidth, mHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, mWidth, mHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "ERROR: texture didn't load" << std::endl;
+    }
     stbi_image_free(data);
 
     glEnable(GL_BLEND);
@@ -74,6 +76,11 @@ int Sprite::GetWidth() const
 int Sprite::GetHeight() const
 {
     return mHeight;
+}
+
+unsigned int Sprite::GetVAO() const
+{
+    return mVAO;
 }
 
 void Sprite::Bind()

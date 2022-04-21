@@ -5,13 +5,17 @@
 class Shader
 {
 public:
-	Shader(const std::string& vertexFile, const std::string& fragmentFile);
+	Shader(const char* vertexPath, const char* fragmentPath);
 	void UploadUniformInt3(const std::string& name, int xval, int yval, int zval);
 	void UploadUniformInt2(const std::string& name, int xval, int yval);
-	void Bind();
+	void use();
 
+	void setInt(const std::string& name, int value) const;
+
+	unsigned int ID;
 private:
-	unsigned int mShaderProgram;
 	std::string ReadFile(const std::string& filepath);
+
+	void checkCompileErrors(unsigned int shader, std::string type);
 };
 
